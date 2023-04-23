@@ -1,0 +1,119 @@
+.container {
+    font-family: Serif;
+    display: grid;
+    grid-template-columns: 0.9fr 1.4fr 1fr;
+    grid-template-rows: 80px 2.2fr 0.6fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "header header header"
+    "article article article"
+    "aside aside footer";
+}
+.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+
+.article {
+    grid-area: article;
+}
+.article form{
+    font-family: Serif;
+    background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
+    margin: 0 auto 55px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+.list-product{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.product{
+    list-style:none;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+
+}
+.product li{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    background-color: #fff;
+    margin: 0;
+    border: 5px solid #fff;
+    box-shadow: 1px 3px 1px 0 rgba(114, 83, 83, 0.23);
+    overflow: hidden;
+    text-align: center;
+}
+.product li p{
+    color: #fff;
+    margin: 5px;
+
+}
+
+.product li a{
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    color: #fff;
+    background: rgb(188, 143, 143);
+    border-radius: 5px;
+    margin: 0 auto;
+    transition: all 0.4s ease-in-out;
+}
+.product li a:hover{
+    background: #725353;
+    color: #fff;
+}
+.product li > div.effect-to-right {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product li:hover > div.effect-to-right {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.product li div.effect-to-right {
+    opacity: 0;
+    background-color: rgba(114, 83, 83, 0.23); /* Фон блока при наведении */
+    transition: all 0.4s ease-in-out;
+    color: #fff;
+    transform: translate(-250px, 0px) rotate(0deg); /* Направление выезжающей панели */
+}
+
+.product li:hover div.effect-to-right {
+    opacity: 1;
+    transform: translate(0px, 0px) rotate(0deg);
+}
+
+.footer {
+    grid-area: footer;
+    background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
+}
+.aside {
+    grid-area: aside;
+}
