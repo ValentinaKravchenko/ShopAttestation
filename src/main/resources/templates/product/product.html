@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cписок товаров</title>
+    <title>OUTFIT</title>
+    <link rel="icon" th:href="@{images/icon.png}" />
 </head>
 <body>
 <h1>Главная страница магазина</h1>
+
 <h3>Cортировка, поиск, фильтрация</h3>
 <form th:method="POST" th:action="@{/product/search}">
     <fieldset>
@@ -27,10 +29,10 @@
                    value="sorted_by_descending_price">
             <label for="descending_price">Отсортировать по убыванию цены</label>
             <p>Категория товаров: </p>
-            <input type="radio" id="furniture" name="contract" value="furniture">
-            <label for="furniture">Обувь</label>
-            <input type="radio" id="appliances" name="contract" value="appliances">
-            <label for="appliances">Аксессуары</label>
+            <input type="radio" id="shoes" name="contract" value="shoes">
+            <label for="shoes">Обувь</label>
+            <input type="radio" id="accessories" name="contract" value="accessories">
+            <label for="accessories">Аксессуары</label>
             <input type="radio" id="clothes" name="contract" value="clothes">
             <label for="clothes">Одежда</label>
             <br>

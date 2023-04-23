@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет администратора</title>
+    <link rel="icon" th:href="@{images/icon.png}" />
 </head>
 <body>
 <h1>Личный кабинет администратора</h1>
+<img width="150px" th:src="@{images/logo.jpg}" />
 <form method="post" th:action="@{/logout}">
     <button type="submit">Выйти из личного кабинета</button>
 </form>

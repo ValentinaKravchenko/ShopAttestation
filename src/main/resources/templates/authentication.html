@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Аутентификация</title>
+    <title>Авторизация</title>
+    <link rel="icon" th:href="@{images/icon.png}" />
     <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
-    <script src = "index.js">
-    </script>
 </head>
 <body>
-<h3>Вход</h3>
-<form method="post" action="/process_login">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    <label for="username">Введите логин: </label>
-    <input type="text" placeholder="Введите логин" name="username" id="username">
-    <br>
-    <label for="password">Введите пароль: </label>
-    <input type="password" placeholder="Введите пароль" name="password" id="password">
-    <input type="submit" value="Войти">
-</form>
-<div th:if="${param.error}" style="color: red">
+<div class="img">
+    <a href="/product"> <img width="200px" th:src="@{images/logo.jpg}" alt="На главную"></a>
+</div>
+<div class="login">
+    <div class="form">
+    <form class = "login-form" method="post" action="/process_login">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="text" placeholder="Введите логин" name="username" id="username">
+        <input type="password" placeholder="Введите пароль" name="password" id="password">
+        <button>Войти</button>
+
+<div class="error" th:if="${param.error}" style="color: red">
     Неправильный логин или пароль
 </div>
-<a href="/registration">Зарегистрироваться</a>
+<p class="message">Еще не зарегистрированы? <a href="/registration">Регистрация</a></p>
+    </form>
+    </div>
+</div>
+
 </body>
 
 </html>
