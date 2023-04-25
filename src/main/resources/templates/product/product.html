@@ -16,7 +16,7 @@
         <form method="post" th:action="@{/logout}">
             <button type="submit" class="slide-btns slide-left" value="Вход">Вход</button>
         </form>
-        <form method="get" action="#contact">
+        <form action="#contact">
             <button type="submit" class="slide-btns slide-left" >Контакты</button>
         </form>
     </div>
@@ -33,7 +33,7 @@
         <input type="text" placeholder="От" name="ot" id="ot" th:value="*{value_price_ot}">
         <input type="text" placeholder="До" name="do" id="do" th:value="*{value_price_do}">
         </div>
-        <div>
+        <div class="radio">
             <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
             Отсортировать по возрастанию цены
             <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">

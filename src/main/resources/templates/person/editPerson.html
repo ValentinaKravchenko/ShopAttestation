@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link rel="icon" th:href="@{images/icon.png}" />
+    <link th:href="@{/css/admin.css}" type="text/css" rel="stylesheet">
+</head>
+<body class="container">
+<div class="header">
+    <a href="/admin"><img width="100px" th:src="@{/images/logo.jpg}" /></a>
+    <div class="button">
+        <form action="/admin/allPerson">
+            <button class="slide-btns slide-left" type="submit" >Назад</button>
+        </form>
+    </div>
+
+</div>
+<div class="article">
+<div class="form">
+        <form class="edit-add" th:method="POST" th:action="@{/admin/editPerson/{id}(id=${person.getId()})}" th:object="${person}" enctype="multipart/form-data">
+            <H3 th:text="'Логин: ' + ${person.getLogin()}"></H3>
+            <div class="none">
+            <input type="text" th:field="*{login}" id="title">
+            <input type="text" th:field="*{password}" id="title">
+            </div>
+            <input type="text" th:field="*{role}" placeholder="Роль пользователя" id="title">
+
+            <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
+        </form>
+</div>
+</div>
+
+</body>
+</html>

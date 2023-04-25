@@ -2,8 +2,10 @@ package com.example.springsecurityapplication.controllers;
 
 import com.example.springsecurityapplication.models.Category;
 import com.example.springsecurityapplication.models.Image;
+import com.example.springsecurityapplication.models.Person;
 import com.example.springsecurityapplication.models.Product;
 import com.example.springsecurityapplication.repositories.CategoryRepository;
+import com.example.springsecurityapplication.services.PersonService;
 import com.example.springsecurityapplication.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,13 +24,16 @@ public class AdminController {
 
     private final ProductService productService;
 
+    private final PersonService personService;
+
     @Value("${upload.path}")
     private String uploadPath;
 
     private final CategoryRepository categoryRepository;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository) {
+    public AdminController(ProductService productService, PersonService personService, CategoryRepository categoryRepository) {
         this.productService = productService;
+        this.personService = personService;
         this.categoryRepository = categoryRepository;
     }
 
@@ -153,5 +158,28 @@ public class AdminController {
         }
         productService.updateProduct(id, product);
         return "redirect:/admin";
+    }
+
+    @GetMapping("admin/allPerson")
+    public String allPerson(Model model)
+    {
+        model.addAttribute("persons", personService.getAllPerson());
+        return "person/allPerson";
+    }
+
+    @GetMapping("admin/editPerson/{id}")
+    public String editPerson(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", personService.getPersonId(id));
+        return "person/editPerson";
+    }
+
+    @PostMapping("admin/editPerson/{id}")
+    public String editPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id, Model model){
+//        if(bindingResult.hasErrors()){
+//            model.addAttribute("category", categoryRepository.findAll());
+//            return "product/editProduct";
+//        }
+        personService.updatePerson(id, person);
+        return "person/allPerson";
     }
 }

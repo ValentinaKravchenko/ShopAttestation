@@ -1,12 +1,14 @@
 package com.example.springsecurityapplication.services;
 
 import com.example.springsecurityapplication.models.Person;
+import com.example.springsecurityapplication.models.Product;
 import com.example.springsecurityapplication.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +32,25 @@ public class PersonService {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person.setRole("ROLE_USER");
         personRepository.save(person);
+    }
+
+    public List<Person> getAllPerson(){
+        return personRepository.findAll();
+    }
+
+    @Transactional
+    public void updatePerson(int id, Person person){
+        person.setId(id);
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void deletePerson(int id){
+        personRepository.deleteById(id);
+    }
+
+    public Person getPersonId(int id){
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        return optionalPerson.orElse(null);
     }
 }

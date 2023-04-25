@@ -234,6 +234,12 @@
 }
 
 
+.radio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .list-product{
     display: flex;
     flex-wrap: wrap;
