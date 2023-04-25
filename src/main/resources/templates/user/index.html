@@ -4,72 +4,95 @@
     <meta charset="UTF-8">
     <title>OUTFIT</title>
     <link rel="icon" th:href="@{images/icon.png}" />
+    <link th:href="@{/css/product.css}" type="text/css" rel="stylesheet">
 
 </head>
-<body>
+<body class="container">
+<div class="header">
+    <div>
+    <a href="#"><img width="100px" th:src="@{/images/logo2.jpg}" alt="Главная"></a>
+    </div>
+    <div class="button">
 <form method="post" th:action="@{/logout}">
-    <button type="submit">Выйти из личного кабинета</button>
+    <button class="slide-btns slide-left" type="submit" value="Выйти">Выйти</button>
 </form>
-<br>
 <form method="get" th:action="@{/cart}">
-    <button type="submit">Корзина</button>
+    <button class="slide-btns slide-left" type="submit" value="Корзина">Корзина</button>
 </form>
-<br>
 <form method="get" th:action="@{/orders}">
-    <input type="submit" value="Заказы">
+    <button class="slide-btns slide-left" type="submit" value="Заказы">Заказы</button>
 </form>
-<h1>Личный кабинет</h1>
-<h3>Cортировка, поиск, фильтрация</h3>
-<form th:method="POST" th:action="@{/person account/product/search}">
-    <fieldset>
-        <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
-        <label for="search">Поиск по наименованию</label>
-        <input type="text" id="search" name="search" th:value="*{value_search}">
-        <br>
-        <p>Цена, P</p>
-        <label for="ot">От</label>
-        <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
-        <label for="do">До</label>
-        <input type="text" name="do" id="do" th:value="*{value_price_do}">
-        <br>
-        <br>
-        <div>
-            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
-            <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="descending_price" name="price"
-                   value="sorted_by_descending_price">
-            <label for="descending_price">Отсортировать по убыванию цены</label>
-            <p>Категория товаров: </p>
-            <input type="radio" id="shoes" name="contract" value="shoes">
-            <label for="shoes">Обувь</label>
-            <input type="radio" id="accessories" name="contract" value="accessories">
-            <label for="accessories">Аксессуары</label>
-            <input type="radio" id="clothes" name="contract" value="clothes">
-            <label for="clothes">Одежда</label>
-            <br>
-            <br>
-            <input type="submit" value="Найти">
+</div>
+</div>
+
+
+<div class="article">
+    <div class="search-product-logo">
+        <div class="search-product">
+            <form th:method="POST" th:action="@{/product/search}">
+
+                <input type="text" placeholder="Поиск" id="search" name="search" th:value="*{value_search}">
+                <p>Цена</p>
+                <div>
+                    <input type="text" placeholder="От" name="ot" id="ot" th:value="*{value_price_ot}">
+                    <input type="text" placeholder="До" name="do" id="do" th:value="*{value_price_do}">
+                </div>
+                <div>
+                    <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+                    Отсортировать по возрастанию цены
+                    <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+                    Отсортировать по убыванию цены
+                </div>
+                <button type="submit" value="Найти">Поиск</button>
+            </form>
         </div>
-    </fieldset>
-</form>
-<hr>
-<h3>Результат поиска, cортировки, фильтрации</h3>
-<div th:each="product : ${search_product}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+        <div class="logo">
+            <img  th:src="@{/images/1.jpg}">
+        </div>
+    </div>
+
+
+    <div class="result-search">
+
+        <div th:each="product : ${search_product}">
+            <h3></h3>
+            <ul class="hover-effect-scale">
+                <li>
+                    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+                    <div>
+                        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
     <hr>
-</div>
-<hr>
-<h3>Доступные товары: </h3>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
-    <hr>
-</div>
+
+    <div class="list-product">
+        <h3>Каталог</h3>
+        <div th:each="product : ${products}">
+            <ul class="product" id="product">
+                <li>
+                    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="250px">
+                    <div class="effect-to-right">
+                        <p th:text="${product.getTitle()}"></p>
+                        <a th:href="@{/product/info/{id}(id=${product.getId()})}">Подробнее</a>
+                        <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="aside">
+        <H3 id="contact">Контакты</H3>
+        <p>Наши магазины:<br>OUTFIT ТЦ Династия<br>CALIFORNIA ТЦ Северный Гостиный двор<br>Телефон:+7 (908) 853-56-53</p>
+    </div>
+    <div class="footer">
+        <a href="#">Наверх</a>
+    </div>
 </body>
 </html>

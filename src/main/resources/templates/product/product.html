@@ -7,57 +7,71 @@
     <link th:href="@{/css/product.css}" type="text/css" rel="stylesheet">
 </head>
 <body class="container">
+
 <div class="header">
     <div id="1">
-        <a href="#">
-        <img width="85px" th:src="@{images/logo2.jpg}" alt="Главная"></a>
+        <a href="#"><img width="100px" th:src="@{/images/logo2.jpg}" alt="Главная"></a>
     </div>
-    <div id="2">
-        <a href="/authentication"><img width="50px" th:src="@{images/login.svg}" alt="Страница входа"></a>
-        <a href="#contact"><img width="40px" th:src="@{images/contact.svg}" alt="Контакты"></a>
+    <div class="button">
+        <form method="post" th:action="@{/logout}">
+            <button type="submit" class="slide-btns slide-left" value="Вход">Вход</button>
+        </form>
+        <form method="get" action="#contact">
+            <button type="submit" class="slide-btns slide-left" >Контакты</button>
+        </form>
     </div>
 </div>
 <div class="article">
 
-<h3>Cортировка, поиск, фильтрация</h3>
+    <div class="search-product-logo">
+ <div class="search-product">
 <form th:method="POST" th:action="@{/product/search}">
-    <fieldset>
-        <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
-        <input type="text" id="search" name="search" th:value="*{value_search}">
-        <br>
-        <p>Цена, P</p>
-        <label for="ot">От</label>
-        <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
-        <label for="do">До</label>
-        <input type="text" name="do" id="do" th:value="*{value_price_do}">
-        <br>
-        <br>
+
+        <input type="text" placeholder="Поиск" id="search" name="search" th:value="*{value_search}">
+        <p>Цена</p>
+        <div>
+        <input type="text" placeholder="От" name="ot" id="ot" th:value="*{value_price_ot}">
+        <input type="text" placeholder="До" name="do" id="do" th:value="*{value_price_do}">
+        </div>
         <div>
             <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
-            <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="descending_price" name="price"
-                   value="sorted_by_descending_price">
-            <label for="descending_price">Отсортировать по убыванию цены</label>
-            <input type="submit" value="Найти">
+            Отсортировать по возрастанию цены
+            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+            Отсортировать по убыванию цены
         </div>
-    </fieldset>
+    <button type="submit" value="Найти">Поиск</button>
 </form>
+ </div>
+    <div class="logo">
+        <img  th:src="@{/images/1.jpg}">
+    </div>
+    </div>
 
-<h3>Результат поиска, cортировки, фильтрации</h3>
+
+<div class="result-search">
+
 <div th:each="product : ${search_product}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
-</div>
-    <h3>Доступные товары: </h3>
-<div class="list-product">
-
-<div th:each="product : ${products}">
-    <ul class="product">
+    <h3></h3>
+    <ul class="hover-effect-scale">
         <li>
-            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+            <div>
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</div>
+    <hr>
+
+<div class="list-product">
+    <h3>Каталог</h3>
+<div th:each="product : ${products}">
+    <ul class="product" id="product">
+        <li>
+            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="250px">
             <div class="effect-to-right">
                 <p th:text="${product.getTitle()}"></p>
                 <a th:href="@{/product/info/{id}(id=${product.getId()})}">Подробнее</a>
@@ -69,10 +83,11 @@
 </div>
 
 <div class="aside">
-    <p>Контакты</p>
+    <H3 id="contact">Контакты</H3>
+    <p>Наши магазины:<br>OUTFIT ТЦ Династия<br>CALIFORNIA ТЦ Северный Гостиный двор<br>Телефон:+7 (908) 853-56-53</p>
 </div>
 <div class="footer">
-    <p>Назад</p>
+    <a href="#">Наверх</a>
 </div>
 </body>
 </html>

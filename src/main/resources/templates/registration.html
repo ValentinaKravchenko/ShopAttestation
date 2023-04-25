@@ -12,7 +12,7 @@
 </div>
 <div class="login">
     <div class="form">
-<form class = "login-form" method="post" th:actioin="@{/registration}" th:object="${person}">
+    <form class = "login-form" method="post" th:actioin="@{/registration}" th:object="${person}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     <input type="text" th:field="*{login}" id="login">
     <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>

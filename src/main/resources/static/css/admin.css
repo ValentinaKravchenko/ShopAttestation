@@ -1,0 +1,110 @@
+.container {
+    font-family: Serif;
+    display: grid;
+    grid-template-columns: 0.9fr 1.4fr 1fr;
+    grid-template-rows: 80px 2.2fr 0.6fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "header header header"
+    "article article article"
+    "aside aside footer";
+}
+.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.button{
+    grid-area: header;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.slide-btns {
+    font-family: Serif;
+    position: relative;
+    color: #fff;
+    font-size: 0.950em;
+    text-transform:  uppercase;
+    background: #bc8f8f;
+    border: 1px solid #725353;
+    padding: 10px 30px;
+    margin: 15px;
+    z-index: 1;
+    overflow: hidden;
+}
+.slide-btns:hover {
+    color: #bc8f8f;
+    text-decoration: none;
+}
+.slide-btns::after {
+    content: "";
+    background: #725353;
+    position: absolute;
+    z-index: -1;
+
+    display: block;
+}
+.slide-btns[class^="slide"]::after {
+    transition: all 0.60s;
+}
+.slide-btns[class^="slide"]:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.60s;
+}
+
+/* Button 1 Перекрывается слева */
+.slide-btns.slide-left::after {
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+}
+
+
+.article {
+    grid-area: article;
+    font-size: 16px;
+    font-family: Serif;
+}
+
+.form{
+
+}
+
+.product{
+    display: flex;
+    lex-wrap: nowrap;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+
+}
+
+.product p{
+    padding-right: 15px;
+}
+
+
+
+.footer {
+    grid-area: footer;
+    color: white;
+    background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

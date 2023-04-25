@@ -19,11 +19,91 @@
     align-items: center;
 }
 
+.button{
+
+    grid-area: header;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.slide-btns {
+
+    font-family: Serif;
+    position: relative;
+    color: #fff;
+    font-size: 0.950em;
+    text-transform:  uppercase;
+    background: #bc8f8f;
+    border: 1px solid #725353;
+    padding: 10px 30px;
+    margin: 15px;
+    z-index: 1;
+    overflow: hidden;
+}
+.slide-btns:hover {
+    color: #bc8f8f;
+    text-decoration: none;
+}
+.slide-btns::after {
+    content: "";
+    background: #725353;
+    position: absolute;
+    z-index: -1;
+
+    display: block;
+}
+.slide-btns[class^="slide"]::after {
+    transition: all 0.60s;
+}
+.slide-btns[class^="slide"]:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.60s;
+}
+
+/* Button 1 Перекрывается слева */
+.slide-btns.slide-left::after {
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+}
 
 
 .article {
     grid-area: article;
 }
+
+.search-product-logo{
+    display: flex;
+    align-items: stretch;
+}
+
+.search-product{
+    width: 600px;
+    padding: 0 0 0;
+    margin: 0;
+}
+
+.logo{
+    padding: 0 0 0;
+    margin: 0;
+}
+
+.article hr{
+    margin: 20px 0;
+    padding: 0;
+    height: 0;
+    border: none;
+    box-shadow: 0 0 5px 1px #725353;
+}
+
 .article form{
     font-family: Serif;
     background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
@@ -33,12 +113,132 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
 }
+.article form {
+    font-family: Serif;
+    color: white;
+    font-size: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+}
+.article form input {
+    font-family: Serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.article form button {
+    font-family: Serif;
+    text-transform: uppercase;
+    outline: 0;
+    outline-color: initial;
+    outline-style: initial;
+    outline-width: 0px;
+    background: rosybrown;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+
+
+.article form button:hover,.form button:active,.form button:focus {
+    background: #725353;
+}
+
+.result-search{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Настройки маркированного списка */
+.hover-effect-scale {
+    list-style:none;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+.hover-effect-scale li {
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    margin: 0;
+    border: 5px solid #fff;
+    box-shadow: 1px 3px 1px 0 rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+/* Заголовок, текст и ссылка */
+.hover-effect-scale li p{
+    color: #fff;
+    margin: 5px;
+}
+.hover-effect-scale li a {
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    color: #fff;
+    background: #bc8f8f;
+    border-radius: 5px;
+    margin: 0 auto;
+    transition: all 0.4s ease-in-out;
+}
+.hover-effect-scale li a:hover {
+    background: #725353;
+    color: #fff;
+}
+/* Выезжающий блок с текстом */
+.hover-effect-scale li > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.hover-effect-scale li:hover > div {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+.hover-effect-scale li div {
+    opacity: 0;
+    background-color: rgba(114, 83, 83, 0.23); /* Фон блока при наведении */
+    transition: all 0.4s ease-in-out;
+    color: #fff;
+}
+.hover-effect-scale li img {
+    transition: all 0.2s linear;
+}
+.hover-effect-scale li:hover img {
+    transform: scale(1.3);
+}
+.hover-effect-scale li:hover div {
+    opacity: 1;
+}
+
 
 .list-product{
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-direction: row;
     align-items: stretch;
 }
@@ -112,8 +312,20 @@
 
 .footer {
     grid-area: footer;
+    color: white;
     background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.footer a{
+    font-family: Serif;
+    color: white;
 }
 .aside {
     grid-area: aside;
+    font-size: 16px;
+
 }

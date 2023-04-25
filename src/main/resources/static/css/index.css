@@ -18,7 +18,6 @@ body{
 .form {
     position: relative;
     z-index: 1;
-    background: rgb(188, 143, 143);
     background: linear-gradient(90deg, rgb(188, 143, 143) 0%, rgb(114, 83, 83) 50%);
     max-width: 360px;
     margin: 0 auto 55px;
@@ -64,9 +63,7 @@ body{
     color: rosybrown;
     text-decoration: none;
 }
-.form .register-form {
-    display: none;
-}
+
 
 
 
